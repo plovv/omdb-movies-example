@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.plovv.movies.home.HomeFragment"
+        android:label="Movies search"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_movieSearchResultFragment"
+            app:destination="@id/movieSearchResultFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieSearchResultFragment"
+        android:name="com.plovv.movies.results.MovieSearchResultFragment"
+        android:label="Search results" >
+        <action
+            android:id="@+id/action_movieSearchResultFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment"
+            app:popUpToInclusive="false" />
+
+        <argument
+            android:name="searchTerm"
+            app:argType="string"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/movieDetailsFragment"
+        android:name="com.plovv.movies.details.MovieDetailsFragment"
+        android:label="Movie details"
+        tools:layout="@layout/fragment_movie_details" >
+        <argument
+            android:name="imdbID"
+            app:argType="string"/>
+        <argument
+            android:name="caller"
+            app:argType="com.plovv.movies.utils.DETAILS_CALLER"/>
+    </fragment>
+
+</navigation>

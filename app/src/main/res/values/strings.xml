@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Movies</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_input_hint">Enter the search term</string>
+    <string name="btn_search_title">Search</string>
+    <string name="label_fav_movies"><b>Favorite movies</b></string>
+    <string name="btn_clear_title">Clear</string>
+    <string name="empty_search_message">Empty search term.</string>
+
+    <string name="btn_fav_add_text">Add to favorites</string>
+    <string name="btn_fav_remove_text">Remove from favorites</string>
+
+    <string name="list_item_year">Year: %s</string>
+    <string name="details_year">Year: %s</string>
+    <string name="details_genre">Genre: %s</string>
+    <string name="details_director">Director: %s</string>
+    <string name="details_writer">Writer: %s</string>
+    <string name="details_actors">Actors: %s</string>
+    <string name="details_type">Type: %s</string>
+    <string name="details_plot">Plot: %s</string>
+</resources>

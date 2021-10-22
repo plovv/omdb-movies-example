@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.plovv.movies.home.HomeViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".home.HomeFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:padding="4dp">
+
+            <EditText
+                android:id="@+id/input_search_term"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/input_height"
+                android:hint="@string/search_input_hint"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingStart="@dimen/input_padding"
+                android:paddingEnd="@dimen/input_padding"
+                android:textSize="20sp"
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/input_background"
+                android:imeOptions="actionDone" />
+
+            <Button
+                android:id="@+id/btn_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_clear_title"
+                app:layout_constraintEnd_toStartOf="@+id/btn_search"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_search_term"
+                android:layout_marginEnd="@dimen/btn_between_margin"
+                android:backgroundTint="@android:color/darker_gray"
+                android:enabled="@{viewModel.clearEnabled}"
+                android:onClick="@{() -> viewModel.onClearClick()}"/>
+
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_search_title"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_clear"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/btn_clear"
+                app:layout_constraintTop_toTopOf="@+id/btn_clear"
+                android:layout_marginStart="@dimen/btn_between_margin"
+                android:backgroundTint="@android:color/darker_gray"
+                android:onClick="@{() -> viewModel.onSearchClick()}"/>
+
+            <TextView
+                android:id="@+id/lblFavorites"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="@string/label_fav_movies"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_clear" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/lst_favorites"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:padding="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblFavorites"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:background="@drawable/list_border_background" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

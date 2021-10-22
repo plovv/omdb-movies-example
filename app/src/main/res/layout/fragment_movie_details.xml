@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="viewModel"
+            type="com.plovv.movies.details.MovieDetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".details.MovieDetailsFragment"
+        android:background="@color/background">
+
+        <ImageView
+            android:id="@+id/img_poster"
+            android:layout_width="150dp"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_img_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="10dp"
+            app:imageUrl="@{viewModel.movie.posterSrc}" />
+
+        <TextView
+            android:id="@+id/txt_movie_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            tools:text="My movie title"
+            android:textSize="20sp"
+            android:padding="@dimen/movie_details_text_padding"
+            app:layout_constraintBottom_toTopOf="@+id/txt_year"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_poster"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:text="@{viewModel.movie.title}" />
+
+        <TextView
+            android:id="@+id/txt_year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Year:"
+            android:padding="@dimen/movie_details_text_padding"
+            app:layout_constraintBottom_toTopOf="@+id/txt_genre"
+            app:layout_constraintStart_toStartOf="@+id/txt_movie_title"
+            app:layout_constraintTop_toBottomOf="@+id/txt_movie_title"
+            android:text="@{viewModel.displayYear}" />
+
+        <TextView
+            android:id="@+id/txt_genre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Genre:"
+            android:padding="@dimen/movie_details_text_padding"
+            app:layout_constraintBottom_toTopOf="@+id/txt_director"
+            app:layout_constraintStart_toStartOf="@+id/txt_year"
+            app:layout_constraintTop_toBottomOf="@+id/txt_year"
+            android:text="@{viewModel.displayGenre}" />
+
+        <TextView
+            android:id="@+id/txt_director"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Director:"
+            app:layout_constraintBottom_toTopOf="@+id/txt_writer"
+            android:padding="@dimen/movie_details_text_padding"
+            app:layout_constraintStart_toStartOf="@+id/txt_genre"
+            app:layout_constraintTop_toBottomOf="@+id/txt_genre"
+            android:text="@{viewModel.displayDirector}" />
+
+        <TextView
+            android:id="@+id/txt_writer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Writer:"
+            app:layout_constraintBottom_toTopOf="@+id/txt_actors"
+            android:padding="@dimen/movie_details_text_padding"
+            app:layout_constraintStart_toStartOf="@+id/txt_director"
+            app:layout_constraintTop_toBottomOf="@+id/txt_director"
+            android:text="@{viewModel.displayWriter}" />
+
+        <TextView
+            android:id="@+id/txt_actors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Actors:"
+            android:padding="@dimen/movie_details_text_padding"
+            app:layout_constraintBottom_toTopOf="@+id/txt_type"
+            app:layout_constraintStart_toStartOf="@+id/txt_writer"
+            app:layout_constraintTop_toBottomOf="@+id/txt_writer"
+            android:text="@{viewModel.displayActors}" />
+
+        <TextView
+            android:id="@+id/txt_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Type:"
+            app:layout_constraintBottom_toTopOf="@+id/plot_container"
+            app:layout_constraintStart_toStartOf="@+id/txt_actors"
+            app:layout_constraintTop_toBottomOf="@+id/txt_actors"
+            android:text="@{viewModel.displayType}" />
+
+        <ScrollView
+            android:id="@+id/plot_container"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txt_type"
+            app:layout_constraintTop_toBottomOf="@+id/txt_type">
+
+            <TextView
+                android:id="@+id/txt_plot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/movie_details_text_padding"
+                tools:text="Plot:"
+                android:text="@{viewModel.displayPlot}" />
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/btn_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            tools:text="Favorite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/plot_container"
+            app:layout_constraintVertical_bias="1.0"
+            android:backgroundTint="@android:color/darker_gray"
+            android:text="@{viewModel.favoriteBtnText}"
+            android:onClick="@{() -> viewModel.onFavoriteClick() }"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
